@@ -1,0 +1,18 @@
+# system files
+.aws/
+.azure/
+.bash_history
+.bashrc
+.config/
+.docker/
+.kube/
+.npm/
+.vscode/
+*.log
+
+# python cache
+__pycache__/
+*.pyc
+
+# env
+venv/
