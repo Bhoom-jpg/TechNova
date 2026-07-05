@@ -3,11 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Bhoom-jpg/TechNova.git'
-            }
-        }
 
         stage('Test') {
             steps {
