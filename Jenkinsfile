@@ -6,9 +6,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'pytest'
-            }
-        }
+                 sh '''
+                 python3 -m pip install --upgrade pip
+                 pip3 install -r requirements.txt
+                 python3 -m pytest -q test_app.py
+                 '''
+    }
+}
 
         stage('Build Docker Image') {
             steps {
