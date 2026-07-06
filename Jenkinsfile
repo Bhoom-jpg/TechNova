@@ -3,16 +3,15 @@ pipeline {
 
     stages {
 
-
         stage('Test') {
             steps {
-                 sh '''
-                 python3 -m pip install --upgrade pip
-                 pip3 install -r requirements.txt
-                 python3 -m pytest -q test_app.py
-                 '''
-    }
-}
+                sh '''
+                python3 -m pip install --upgrade pip
+                pip3 install -r requirements.txt
+                python3 -m pytest -q test_app.py
+                '''
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
@@ -28,6 +27,20 @@ pipeline {
                 docker run -d -p 5000:5000 --name technova-app technova-app
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+
+        success {
+            echo 'Pipeline SUCCESS 🎉'
+        }
+
+        failure {
+            echo 'Pipeline FAILED ❌'
         }
     }
 }
